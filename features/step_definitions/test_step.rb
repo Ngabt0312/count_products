@@ -8,9 +8,9 @@ Given('navigate login page and count products') do
   #$search_bar.send_keys(string,:enter)
   $driver.find_element(:css, ".eUnWAD").send_keys string, :enter
   $product_count = $driver.find_elements(:css, ".search-a-product-item")
-  $product_count.count
+  $number_product= $product_count.count 
   end
   
   Then('puts products') do
-  puts $product_count
+  puts $number_product
   end
