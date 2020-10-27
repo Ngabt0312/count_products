@@ -4,5 +4,5 @@ So that I have scenario.
 
 Scenario: count product
 Given navigate login page and count products
-When input "iphone 11" and search
+When input "iphone 11" and count
 Then puts products 
