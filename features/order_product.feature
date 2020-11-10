@@ -5,4 +5,4 @@ So that I have scenario.
 Scenario: order product
 Given navigate login page, search and order product
 When input "apple" and order
-Then mess "You ordered successful"
+Then check product add to cart
