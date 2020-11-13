@@ -34,22 +34,25 @@ When('input {string} and order') do |string|
   $product_title = $product_count[4].text.delete("...")
   $product_count[4].click
   sleep (2)
-  $verify_title = expect($driver.find_element(:css, "h1.title").text).to include($product_title)
+  expect($driver.find_element(:css, "h1.title").text).to include($product_title)
   # add to cart
   $driver.find_element(:css, ".input").send_keys :backspace
   $driver.find_element(:css, ".input").send_keys ($product_number)
   $driver.find_element(:css, ".btn.btn-add-to-cart").click
 end
-Then('login input {string} and {string}') do |string, string2|
+Then('check add to cart') do
   # check lại trong giỏ hàng
   $driver.manage.timeouts.implicit_wait = 2.5
-  $driver.find_element(:css, ".gGRKbG").click
-  #login 
-  $driver.find_element(:id, "email").send_keys (string)
-  $driver.find_element(:id, "password").send_keys (string2)
-  $driver.find_element(:css, ".GBpke").click
-  sleep (5)
-  #expect($driver.find_element(:css,".cart-products__name").text).to include($verify_title)
+  $driver.find_element(:css, ".bDWZEC").click
+  sleep (2)
+  expect($driver.find_element(:css,".cart-products__name").text).to include($product_title)
+  #lấy giá sản phẩm
+  $price_product = $driver.find_element(css: ".cart-products__real-prices").text.delete(".").delete("đ")
+  #lấy tổng tiền khi mua 2 sản phẩm
+  $driver.manage.timeouts.implicit_wait = 2.5
+  $total_price = $driver.find_element(css: ".prices__total").text.delete("Thành tiền").delete(".").delete("đ").delete("(Đã bao gồm VAT nếu có)")
+  #check tổng tiền
+  expect($product_number.to_i * $price_product.to_i).to eq($total_price.to_i)
 end
   
   

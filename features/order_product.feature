@@ -5,4 +5,4 @@ So that I have scenario.
 Scenario: order product
 Given navigate login page, search and order product
 When input "apple" and order
-Then login input "buithuynga0312@gmail.com" and "Ngabt123"
+Then check add to cart
